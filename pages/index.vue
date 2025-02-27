@@ -1,6 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-100">
     <!-- Hero Section -->
+    <!-- Hero Section -->
     <section
       class="relative overflow-hidden bg-gradient-to-r from-green-500 to-blue-600 text-white py-20"
     >
@@ -10,7 +11,8 @@
           Discover the best merch for developers and tech enthusiasts. Elevate
           your style with our exclusive collection.
         </p>
-        <button
+        <NuxtLink
+          to="/products"
           v-motion
           :initial="{ scale: 1 }"
           :hovered="{ scale: 1.05 }"
@@ -18,7 +20,7 @@
           class="bg-white text-green-600 px-8 py-4 rounded-full font-semibold shadow-lg transition duration-300 hover:bg-gray-100"
         >
           Shop Now
-        </button>
+        </NuxtLink>
       </div>
       <!-- Background Image Overlay -->
       <div class="absolute inset-0 opacity-20">
