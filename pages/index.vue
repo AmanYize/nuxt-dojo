@@ -1,7 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-100">
     <!-- Hero Section -->
-    <!-- Hero Section -->
     <section
       class="relative overflow-hidden bg-gradient-to-r from-green-500 to-blue-600 text-white py-20"
     >
@@ -59,6 +58,7 @@
             </h3>
             <p class="text-gray-600 mt-2">${{ product.price }}</p>
             <button
+              @click="viewProductDetails(product.id)"
               class="mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300"
             >
               View Details
@@ -89,6 +89,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 // Fetch featured products from the API
 const featuredProducts = ref([]);
@@ -102,6 +103,14 @@ onMounted(async () => {
     console.error("Error fetching featured products:", error);
   }
 });
+
+// Router instance for navigation
+const router = useRouter();
+
+// Function to navigate to product details page
+function viewProductDetails(productId) {
+  router.push(`/products/${productId}`);
+}
 </script>
 
 <style scoped>

@@ -52,20 +52,21 @@
 </template>
 
 <script setup>
-definePageMeta({
-  layout: "products",
-});
-
-// Fetch products
+// State variables
 const loading = ref(true);
 const products = ref([]);
 
+// Fetch products on component mount
 onMounted(async () => {
   try {
-    const { data } = await useFetch("https://fakestoreapi.com/products");
-    products.value = data.value;
-  } catch (error) {
-    console.error("Error fetching products:", error);
+    const { data, error } = await useFetch("https://fakestoreapi.com/products");
+    if (error.value) {
+      console.error("Error fetching products:", error.value);
+    } else {
+      products.value = data.value;
+    }
+  } catch (err) {
+    console.error("Unexpected error fetching products:", err);
   } finally {
     loading.value = false;
   }
@@ -87,3 +88,5 @@ useHead({
   ],
 });
 </script>
+
+<style scoped></style>
